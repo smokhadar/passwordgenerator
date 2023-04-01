@@ -4,15 +4,27 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword() = {
-    length: length,
-    lowercase: lowercase,
-    uppercase: uppercase,
-    numbers: numbers,
-    specialCharacter: specialCharacter,
+    // length: length,
+    // lowercase: lowercase,
+    // uppercase: uppercase,
+    // numbers: numbers,
+    // specialCharacter: specialCharacter,
   };
+
+// creating options for password generator? - can i use split string on a proporty in a variable or must it be used on a variable?
+  length: ,
+  lowercase: "abcdefghijklmnopqrstuvwxyz",
+  uppercase: "ABCDEFGHIJKLMNOP",
+  numbers: "0123456789",
+  specialCharacter: "!@#$&"
+
+
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
   
+  for (var i = 0; i <= length; i++) {
+    password = 
+  }
 //   generate password with lowercase characters
   if (lowercase === y) {
     
