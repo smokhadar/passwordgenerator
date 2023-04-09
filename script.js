@@ -120,15 +120,18 @@ generateBtn.addEventListener("click", function() {
        let value = possiblePassword[Math.floor(Math.random() * possiblePassword.length)];
        finalPassword.push(value);
     }
-      console.log(finalPassword, "finalPassword");
+      console.log(definitePassword, "definite password");
 
     // create varable to pull remaining length of password to meet user criteria
       var remainingLength = lengthStr - definitePassword.length;
       console.log(remainingLength, "remainingLength");
     
     // reduce possible password length
-      possiblePassword.length = remainingLength;
-      console.log(possiblePassword.length, "possiblePassword length");
+      finalPassword.length = remainingLength;
+      console.log(finalPassword.length, "final length");
+
+    finalPassword = finalPassword.concat(definitePassword);
+    console.log(finalPassword,"final password");
 
 //  convert array to string and remove commas
       final = finalPassword.toString();
