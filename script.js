@@ -9,7 +9,6 @@ var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m"
 var uppercase = ["A","B","C",'D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 var numbers = [0,1,2,3,4,5,6,7,8,9];
 var specialCharacter = ["!", "@", " ",'"',"#",'$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','=','>','?','[',']','^','_','`','{','|','}','~'];
-var allCharacters = []
 
 // variables for user confirm windows
 var wantsUppercase
@@ -25,13 +24,16 @@ var wantsSpecial
  var possiblePassword = [];
  console.log(possiblePassword);
 
+//  creates empty array to store final password
  var finalPassword = []
  console.log(finalPassword, "finalPassword");
 
  // Add event listener to generate button
-// Series of prompts soliciting user info to use for password
+// Series of prompts soliciting user input for password
 generateBtn.addEventListener("click", function() {
-
+  
+  // clear password text value
+  finalPassword = []
   //  prompt requesting length of password
     var lengthStr = prompt("What length do you want your password between 8-128 characters?");
       console.log(lengthStr, "lengthStr");
@@ -52,7 +54,7 @@ generateBtn.addEventListener("click", function() {
           definitePassword = definitePassword.concat(lowercase[wantsLowercase]);
           console.log(wantsLowercase, lowercase[wantsLowercase]);
 
-          // add array to possible array
+          // add lowercase array to possible array
           possiblePassword = possiblePassword.concat(lowercase);
           console.log(possiblePassword, "possiblePassword");
       }
@@ -70,7 +72,7 @@ generateBtn.addEventListener("click", function() {
           definitePassword = definitePassword.concat(uppercase[wantsUppercase]);
           console.log(wantsUppercase, uppercase[wantsUppercase]);
 
-          // add array to possible array
+          // add uppercase array to possible array
           possiblePassword = possiblePassword.concat(uppercase);
           console.log(possiblePassword, "possiblePassword");
         }
@@ -85,7 +87,7 @@ generateBtn.addEventListener("click", function() {
           definitePassword = definitePassword.concat(numbers[wantsNumber]);
           console.log(wantsNumber, numbers[wantsNumber]);
 
-          // add array to possible array
+          // add numbers array to possible array
           possiblePassword = possiblePassword.concat(numbers);
           console.log(possiblePassword, "Possible password")
         }
@@ -100,35 +102,39 @@ generateBtn.addEventListener("click", function() {
             definitePassword = definitePassword.concat(specialCharacter[wantsSpecial]);
             console.log(wantsSpecial, specialCharacter[wantsSpecial]);
 
-            // add array to possible array
+            // add special character array to possible array
             possiblePassword = possiblePassword.concat(specialCharacter);
             console.log(possiblePassword, "possible password");
           }
 
-    // create alert if doesnt say yes once - needs to select at least 1 character type to use
+    // create alert if doesnt say yes at least once to characters - needs to select at least 1 character type to use
     if (!wantsLowercase && !wantsUppercase  && !wantsNumber && !wantsSpecial) {
-        alert("Please select at least one character type to use in the password."); };
+        alert("Please select at least one character type to use in the password."); 
+      return;
+    };
 
     console.log(definitePassword, "definitePassword");
-    // create varable to pull remaining length of password to meet user criteria
-    var remainingLength = lengthStr - definitePassword.length;
-    console.log(remainingLength, "remainingLength");
-    
+
     // for loop to pull random characters into possible password
-    for (i=0; i < remainingLength; i++) {
-       let value = Math.floor(Math.random() * possiblePassword.length);
-       possiblePassword = possiblePassword.concat(value)
+    for (i=0; i < lengthStr; i++) {
+       let value = possiblePassword[Math.floor(Math.random() * possiblePassword.length)];
+       finalPassword.push(value);
     }
-      console.log(possiblePassword, "possiblePassword");
+      console.log(finalPassword, "finalPassword");
 
+    // create varable to pull remaining length of password to meet user criteria
+      var remainingLength = lengthStr - definitePassword.length;
+      console.log(remainingLength, "remainingLength");
+    
     // reduce possible password length
-    possiblePassword.length = remainingLength;
-    console.log(possiblePassword.length, "possiblePassword length");
+      possiblePassword.length = remainingLength;
+      console.log(possiblePassword.length, "possiblePassword length");
 
-  // combine definite and possible password
-    finalPassword = finalPassword.concat(possiblePassword,definitePassword);
-    console.log(finalPassword, "finalPassword");
-    final = finalPassword.toString();
+//  convert array to string and remove commas
+      final = finalPassword.toString();
+      final = final.replaceAll(',','');
 
-  passwordText.value = final;
+    // change text on screen to generated password
+      passwordText.value = final;
+
   });
