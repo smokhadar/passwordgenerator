@@ -35,6 +35,7 @@ generateBtn.addEventListener("click", function() {
   // clear password text value
   finalPassword = []
   possiblePassword = []
+  definitePassword = []
   //  prompt requesting length of password
     var lengthStr = prompt("What length do you want your password between 8-128 characters?");
       console.log(lengthStr, "lengthStr");
