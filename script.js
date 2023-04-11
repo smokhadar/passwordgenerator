@@ -34,6 +34,7 @@ generateBtn.addEventListener("click", function() {
   
   // clear password text value
   finalPassword = []
+  possiblePassword = []
   //  prompt requesting length of password
     var lengthStr = prompt("What length do you want your password between 8-128 characters?");
       console.log(lengthStr, "lengthStr");
@@ -45,7 +46,7 @@ generateBtn.addEventListener("click", function() {
   
    // confirm requesting lowercase letters
     // Verifies user enters value between 8 and 128
-  if(lengthStr >=8 & lengthStr <= 128) {
+  if(lengthStr >=8 && lengthStr <= 128) {
       wantsLowercase = confirm("Confirm if you want lowercase characters.");
       console.log(wantsLowercase, "wantsLowercase");
       // add value to definite array
